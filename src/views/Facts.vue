@@ -84,32 +84,22 @@
             />
           </a>
 
-          <router-link
+          <a
             v-if="selectValue === 'facts/' && fact.fact_number"
-            :to="{
-              name: 'facts-detailed',
-              params: {
-                id: fact?.fact_number,
-                factId: fact?.object_id ? fact?.object_id : 1,
-              },
-            }"
+            target="_blank"
+            :href="`${url}/facts/${fact.fact_number}/${fact.object_id}`"
             class="button-more"
-            color="#06AA17"
           >
             {{ $t('message.more') }}
-          </router-link>
-
-          <router-link
+          </a>
+          <a
             v-if="selectValue !== 'facts/' && fact.fact_number"
-            :to="{
-              name: 'facts-detailed',
-              params: { id: fact.fact_number, factId: fact?.id },
-            }"
+            target="_blank"
+            :href="`${url}/facts/${fact.fact_number}/${fact.id}`"
             class="button-more"
-            color="#06AA17"
           >
             {{ $t('message.more') }}
-          </router-link>
+          </a>
         </div>
       </div>
 
@@ -177,7 +167,7 @@
   import moment from 'moment'
 
   import { useRoute, useRouter } from 'vue-router'
-  import options from '../../components/options'
+  import options from '../components/options'
   import { useStore } from '@/stores/store'
 
   const factLists = ref([])
