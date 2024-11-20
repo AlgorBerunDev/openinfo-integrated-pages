@@ -7,15 +7,10 @@
         </el-main>
       </el-container>
     </el-container>
-    <DialogNotification />
   </div>
 </template>
 
-<script setup>
-  import Footer from '@/components/Footer.vue'
-  import MainNavigation from '@/components/MainNavigation.vue'
-  import Header from '@/components/Header.vue'
-</script>
+<script setup></script>
 
 <style scoped>
   .container-layout {
