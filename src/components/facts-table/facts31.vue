@@ -188,7 +188,7 @@
     loading.value = true
 
     axios
-      .get(`${url}/disclosure/fact31/${id.value}`, {
+      .get(`${url}/disclosure/fact31/${id.value}/`, {
         method: 'get',
       })
       .then((response) => {

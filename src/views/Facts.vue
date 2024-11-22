@@ -238,7 +238,7 @@
 
   // const getFactsBySearch = () => {
   //   loading.value = true
-  //   axios.get(`${url}/disclosure/${selectValue.value}?page=${currentPage.value}${dateValue.value?.length ? `&pub_date__lte=${(dateValue.value?.[1]).toISOString()}&pub_date__gte=${moment(dateValue.value?.[0]).toISOString()}` : ''}&search=${factSearchInput.value}`, {
+  //   axios.get(`${url}/disclosure/${selectValue.value}?page=${currentPage.value}${dateValue.value?.length ? `&pub_date__lte=${(dateValue.value?.[1]).toISOString()}&pub_date__gte=${moment(dateValue.value?.[0]).toISOString()}` : ''}&search=${factSearchInput.value}/`, {
   //     method: 'get',
   //   })
   //       .then(response => {

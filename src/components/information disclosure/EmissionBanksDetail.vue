@@ -169,7 +169,7 @@
   const getFactsById = () => {
     loading.value = true
     axios
-      .get(`${url}/emissions/bank/${id.value}`, {
+      .get(`${url}/emissions/bank/${id.value}/`, {
         method: 'get',
       })
       .then((response) => {

@@ -186,7 +186,7 @@
   const getFactsById = () => {
     loading.value = true
     axios
-      .get(`${url}/disclosure/fact7/${id.value}`, {
+      .get(`${url}/disclosure/fact7/${id.value}/`, {
         method: 'get',
       })
       .then((response) => {

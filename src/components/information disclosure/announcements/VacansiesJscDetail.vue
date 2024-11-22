@@ -60,7 +60,7 @@
   const getFactsById = () => {
     loading.value = true
     axios
-      .get(`${url}/announcement/main/${id.value}`, {
+      .get(`${url}/announcement/main/${id.value}/`, {
         method: 'get',
       })
       .then((response) => {
