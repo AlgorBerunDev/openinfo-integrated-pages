@@ -256,7 +256,7 @@
         <img src="/src/assets/images/icons/Excel-icon.svg" alt="pdfIcon"
       /></a>
       <a
-        :href="`https://openinfo.uz/ru/reports/to_pdf${data?.parent_id}/`"
+        :href="`${downloadUrl}/reports/to_pdf${data?.parent_id}/`"
         target="_blank"
         download
       >
@@ -278,6 +278,7 @@
   const data = ref([])
 
   const url = import.meta.env.VITE_APP_SERVER_URL
+  const downloadUrl = import.meta.env.VITE_APP_DOWNLOAD_URL
   const input = ref('')
   const options = ref(['1', '2', '3'])
   const selectValue = ref('')

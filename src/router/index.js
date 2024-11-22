@@ -4,7 +4,7 @@ import MainLayout from '../views/MainLayout.vue'
 import { factsRoutes } from './factsRoutes'
 // import { announcementRoutes } from './announcementRoutes'
 // import { emissionRoutes } from './emissionsRoutes'
-// import { reportsRoutes } from './reportsRoutes'
+import { reportsRoutes } from './reportsRoutes'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,7 +20,7 @@ const router = createRouter({
         ...factsRoutes,
         // ...announcementRoutes,
         // ...emissionRoutes,
-        // ...reportsRoutes,
+        ...reportsRoutes,
         {
           name: 'PageNotFound',
           path: '/:pathMatch(.*)*',
