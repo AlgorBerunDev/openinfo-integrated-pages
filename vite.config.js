@@ -5,6 +5,18 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+  base: '/openinfo/', // Добавляем базовый путь
+  build: {
+    assetsDir: 'ef-assets', // Меняем директорию ассетов
+    // Можно также настроить имена файлов
+    rollupOptions: {
+      output: {
+        assetFileNames: 'ef-assets/[name]-[hash][extname]',
+        chunkFileNames: 'ef-assets/[name]-[hash].js',
+        entryFileNames: 'ef-assets/[name]-[hash].js',
+      },
+    },
+  },
   server: {
     proxy: {
       '/api': {
@@ -23,7 +35,6 @@ export default defineConfig({
           importSass: true,
         }),
       ],
-      // globalComponentsDeclaration: true,
     }),
   ],
   resolve: {
