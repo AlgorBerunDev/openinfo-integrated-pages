@@ -87,7 +87,7 @@
           <a
             v-if="selectValue === 'facts/' && fact.fact_number"
             target="_blank"
-            :href="`/facts/${fact.fact_number}/${fact.object_id}`"
+            :href="`/reports/material_fact3/${fact.fact_number}/${fact.object_id}`"
             class="button-more"
           >
             {{ $t('message.more') }}
@@ -95,7 +95,7 @@
           <a
             v-if="selectValue !== 'facts/' && fact.fact_number"
             target="_blank"
-            :href="`/facts/${fact.fact_number}/${fact.id}`"
+            :href="`/reports/material_fact3/${fact.fact_number}/${fact.id}`"
             class="button-more"
           >
             {{ $t('message.more') }}
