@@ -6,6 +6,7 @@
       </div>
 
       <div class="search-bar">
+        <SelectMenu />
         <el-date-picker
           v-model="dateValue"
           size="large"
@@ -62,14 +63,12 @@
                 src="/src/assets/images/icons/excel-icon2.svg"
                 alt="pdfIcon"
             /></a>
-            <router-link
+            <a
+              target="_blank"
               class="button-more"
+              :href="`${url}/reports/bank/quarter/${item.id}`"
               color="#06AA17"
-              :to="{
-                name: 'reports-quarter-detailBanks',
-                params: { id: item.id },
-              }"
-              >{{ $t('message.more') }}</router-link
+              >{{ $t('message.more') }}</a
             >
           </div>
         </div>
@@ -142,10 +141,12 @@
   import { useRoute } from 'vue-router'
   import router from '@/router'
   import { useStore } from '@/stores/store'
+  import SelectMenu from '../../SelectMenu.vue'
 
   const data = ref([])
 
   const url = import.meta.env.VITE_APP_SERVER_URL
+  const downloadUrl = import.meta.env.VITE_APP_DOWNLOAD_URL
   const route = useRoute()
   const dateValue = ref([])
   const loading = ref(false)

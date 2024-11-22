@@ -6,6 +6,7 @@
       </div>
 
       <div class="search-bar">
+        <SelectMenu />
         <el-date-picker
           v-model="dateValue"
           size="large"
@@ -52,13 +53,12 @@
       <div v-for="fact in factLists" class="facts-list">
         <div class="d-flex justify-content-between align-items-center">
           <a
-            :href="`https://openinfo.uz/media/${fact.pdf_file}`"
+            :href="`${downloadUrl}/media/${fact.pdf_file}`"
             download
             target="_blank"
             class="organization-in-facts"
             >{{ fact.organization_name }}</a
           >
-          <!--            <el-button class="button-more" color="#06AA17" @click="router.push({name: 'facts-detailed', params : { id : fact.fact_number,  factId: selectValue === 'facts/' ? fact.object_id : fact.id }})">Подробно</el-button>-->
         </div>
 
         <p class="fact-title">{{ fact.fact_title }}</p>
@@ -123,6 +123,7 @@
 
   const factLists = ref([])
   const url = import.meta.env.VITE_APP_SERVER_URL
+  const downloadUrl = import.meta.env.VITE_APP_DOWNLOAD_URL
   const router = useRoute()
   const selectValue = ref(options[0].value)
   const dateValue = ref([])

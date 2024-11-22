@@ -5,6 +5,7 @@
         <p>{{ $t('message.REPORTS - INSURANCE COMPANIES') }}</p>
       </div>
       <div class="search-bar">
+        <SelectMenu />
         <el-date-picker
           v-model="dateValue"
           size="large"
