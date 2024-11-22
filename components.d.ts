@@ -127,6 +127,7 @@ declare module '@vue/runtime-core' {
     ReportJscDetail: typeof import('./src/components/information disclosure/AnnualReports/ReportJscDetail.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SelectMenu: typeof import('./src/components/SelectMenu.vue')['default']
     StcokKotirovka: typeof import('./src/components/kotirovka/StcokKotirovka.vue')['default']
     Tenders: typeof import('./src/components/information disclosure/announcements/Tenders.vue')['default']
     TestMaterialsTable: typeof import('./src/components/professional-participants/TestMaterialsTable.vue')['default']

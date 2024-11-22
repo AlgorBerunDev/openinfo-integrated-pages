@@ -5,6 +5,7 @@
         <p>{{ $t('message.title_1') }}</p>
       </div>
       <div class="search-bar">
+        <SelectMenu />
         <el-date-picker
           v-model="dateValue"
           size="large"

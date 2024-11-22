@@ -6,6 +6,7 @@
       </div>
 
       <div class="search-bar">
+        <SelectMenu />
         <el-date-picker
           v-model="dateValue"
           size="large"
@@ -140,6 +141,7 @@
   import { useRoute } from 'vue-router'
   import router from '@/router'
   import { useStore } from '@/stores/store'
+  import SelectMenu from '../../SelectMenu.vue'
 
   const data = ref([])
 
