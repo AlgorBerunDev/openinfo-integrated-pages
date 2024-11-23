@@ -31,11 +31,11 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
+  import { ref, onMounted } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
 
   const router = useRouter()
-  const selectedReport = ref(null)
+  const route = useRoute()
 
   // Define routes for Quarterly Reports
   const quarterlyReports = {
@@ -53,6 +53,28 @@
     IFRS: '/reports/msfo/annual',
     'Audition Results': '/reports/audition/annual',
   }
+
+  // Initialize selectedReport based on current route
+  const selectedReport = ref(null)
+
+  // Function to find label by route
+  const findLabelByRoute = (route) => {
+    const allReports = { ...quarterlyReports, ...annualReports }
+    return (
+      Object.entries(allReports).find(([_, path]) => path === route)?.[1] ||
+      null
+    )
+  }
+
+  // Set initial value based on current route
+  onMounted(() => {
+    selectedReport.value = route.path
+    // If the current route exists in our options, select it
+    if (!findLabelByRoute(route.path)) {
+      // If current route is not in options, you might want to set a default
+      selectedReport.value = '/reports/jsc/quarter' // or any other default route
+    }
+  })
 
   // Navigate to the selected report
   const navigateToReport = (route) => {
