@@ -98,7 +98,7 @@
     loading.value = true
     axios
       .get(
-        `${url}/emissions/pc?page=${currentPage.value}${dateValue.value.length ? `pub_date_lte=${moment(dateValue.value[1]).toISOString()}pub_date_gte=${moment(dateValue.value[0]).toISOString()}` : ''}`,
+        `${url}/emissions/pc/?page=${currentPage.value}${dateValue.value.length ? `pub_date_lte=${moment(dateValue.value[1]).toISOString()}pub_date_gte=${moment(dateValue.value[0]).toISOString()}` : ''}`,
         {
           method: 'get',
         },

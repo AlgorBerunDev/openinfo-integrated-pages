@@ -154,7 +154,7 @@
     loading.value = true
     axios
       .get(
-        `${url}/emissions/jsc?page=${currentPage.value}&report_type=2${dateValue.value.length ? `pub_date_lte=${dateValue.value[1].toISOString()}pub_date_gte=${dateValue.value[0].toISOString()}` : ''}&search=${factSearchInput.value}`,
+        `${url}/emissions/jsc/?page=${currentPage.value}&report_type=2${dateValue.value.length ? `pub_date_lte=${dateValue.value[1].toISOString()}pub_date_gte=${dateValue.value[0].toISOString()}` : ''}&search=${factSearchInput.value}`,
         {
           method: 'get',
         },
