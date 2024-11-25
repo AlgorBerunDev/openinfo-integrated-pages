@@ -64,11 +64,12 @@
                 alt="pdfIcon"
             /></a>
             <a
-              target="_blank"
+              :href="`/reports/bank_quarter/${item.id}`"
               class="button-more"
-              :href="`${url}/reports/bank/quarter/${item.id}`"
               color="#06AA17"
-              >{{ $t('message.more') }}</a
+              target="_blank"
+            >
+              {{ $t('message.more') }}</a
             >
           </div>
         </div>
