@@ -64,14 +64,13 @@
                 src="/src/assets/images/icons/excel-icon2.svg"
                 alt="icon"
             /></a>
-            <router-link
+            <a
+              :href="`/reports/jsc_quarter/${item.id}`"
               class="button-more"
               color="#06AA17"
-              :to="{
-                name: 'reports-quarter-detailJSC',
-                params: { id: item.id },
-              }"
-              >{{ $t('message.more') }}</router-link
+              target="_blank"
+            >
+              {{ $t('message.more') }}</a
             >
           </div>
         </div>
