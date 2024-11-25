@@ -62,14 +62,13 @@
                 src="/src/assets/images/icons/excel-icon2.svg"
                 alt="pdfIcon"
             /></a>
-            <router-link
+            <a
+              :href="`/reports/insurance_annual/${item.id}`"
               class="button-more"
               color="#06AA17"
-              :to="{
-                name: 'reports-annual-detailInsurance',
-                params: { id: item.id },
-              }"
-              >{{ $t('message.more') }}</router-link
+              target="_blank"
+            >
+              {{ $t('message.more') }}</a
             >
           </div>
         </div>

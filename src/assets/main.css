@@ -3,6 +3,7 @@
 *:after {
   box-sizing: border-box;
 }
+
 body {
   padding: 0;
   margin: 0;
@@ -11,6 +12,7 @@ body {
   width: 100%;
   background: #ffffff;
 }
+
 #app {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +22,7 @@ body {
 
 .layout-content {
   justify-content: space-between;
-  padding: 0 50px;
+  /* padding: 0 50px; */
   display: flex;
   width: 100%;
 }
@@ -201,6 +203,7 @@ table td {
 .Kotirovka-collapse .el-collapse-item__wrap {
   background: #fff;
 }
+
 .Kotirovka-collapse .el-collapse-item__wrap {
   background: #fff;
   border-bottom: none;
@@ -281,16 +284,16 @@ table td {
   font-weight: 400;
 }
 
-.el-button-group > .el-button:not(:first-child):not(:last-child) {
+.el-button-group>.el-button:not(:first-child):not(:last-child) {
   border-radius: 5px;
 }
 
-.el-button-group > .el-button:first-child {
+.el-button-group>.el-button:first-child {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
 
-.el-button-group > .el-button:last-child {
+.el-button-group>.el-button:last-child {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
 }
@@ -311,19 +314,17 @@ table td {
 }
 
 
-.table-white-header .el-table .cell {
-
-}
+.table-white-header .el-table .cell {}
 
 .table-white-header.Kotirovka-collapse .active-row {
-  background-color: #f0f9ff !important; /* Light blue background */
+  background-color: #f0f9ff !important;
+  /* Light blue background */
 }
 
 .el-overlay {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.5
-  ) !important; /* White background with 70% opacity */
+  background-color: rgba(255,
+      255,
+      255,
+      0.5) !important;
+  /* White background with 70% opacity */
 }
