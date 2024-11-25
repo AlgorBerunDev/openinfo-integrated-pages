@@ -53,11 +53,13 @@
           <p class="organization-in-facts">
             {{ item.organization.short_name_text }}
           </p>
-          <router-link
+          <a
+            :href="`/reports/bank_quarter/${item.id}`"
             class="button-more"
             color="#06AA17"
-            :to="{ name: 'emission-jsc-detail', params: { id: item.id } }"
-            >{{ $t('message.more') }}</router-link
+            target="_blank"
+          >
+            {{ $t('message.more') }}</a
           >
         </div>
 
