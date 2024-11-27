@@ -1,10 +1,6 @@
 <template>
   <el-container>
     <el-main v-loading="loading" class="fact-container">
-      <div class="header-name title">
-        <p>{{ $t('message.quarterly_report_IFRS') }}</p>
-      </div>
-
       <div class="search-bar">
         <SelectMenu />
         <el-date-picker

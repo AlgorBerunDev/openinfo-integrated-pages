@@ -1,9 +1,6 @@
 <template>
   <el-container>
     <el-main v-loading="loading" class="fact-container">
-      <div class="header-name title">
-        <p>{{ $t('message.REPORTS - INSURANCE COMPANIES') }}</p>
-      </div>
       <div class="search-bar">
         <SelectMenu />
         <el-date-picker
