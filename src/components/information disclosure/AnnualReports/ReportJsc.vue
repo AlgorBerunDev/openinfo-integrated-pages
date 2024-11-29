@@ -3,6 +3,7 @@
     <el-main v-loading="loading" class="fact-container">
       <div class="search-bar">
         <SelectMenu />
+
         <el-date-picker
           v-model="dateValue"
           size="large"

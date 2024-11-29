@@ -1,5 +1,16 @@
 export const reportsRoutes = [
   {
+    path: '/reports/',
+    name: 'reports',
+
+    components: {
+      default: () =>
+        import(
+          '../components/information disclosure/reports-all/Main-reports.vue'
+        ),
+    },
+  },
+  {
     path: '/reports/jsc/quarter',
     name: 'reports-quarter-jsc',
 
