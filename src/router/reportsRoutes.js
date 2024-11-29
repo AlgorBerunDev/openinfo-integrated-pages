@@ -1,7 +1,7 @@
 export const reportsRoutes = [
   {
-    path: '/reports/',
-    name: 'reports',
+    path: '/main-reports/',
+    name: 'main-reports',
 
     components: {
       default: () =>
