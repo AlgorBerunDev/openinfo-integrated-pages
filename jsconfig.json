@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // Base directory for resolving paths
+    "paths": {
+      "@/*": ["src/*"] // Match the alias in vite.config.js
+    }
+  },
+  "include": ["src/**/*"] // Include all source files
+}

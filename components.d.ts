@@ -68,6 +68,7 @@ declare module '@vue/runtime-core' {
     HoldingGms: typeof import('./src/components/information disclosure/announcements/HoldingGms.vue')['default']
     Investments: typeof import('./src/components/information disclosure/announcements/Investments.vue')['default']
     LimitedLiabilityCompanies: typeof import('./src/components/information disclosure/LimitedLiabilityCompanies.vue')['default']
+    MainReports: typeof import('./src/components/information disclosure/reports-all/Main-reports.vue')['default']
     Msfo: typeof import('./src/components/information disclosure/AnnualReports/Msfo.vue')['default']
     Other: typeof import('./src/components/information disclosure/announcements/Other.vue')['default']
     PageNotFound: typeof import('./src/components/404/PageNotFound.vue')['default']
