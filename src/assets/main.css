@@ -22,7 +22,7 @@ body {
 
 .layout-content {
   justify-content: space-between;
-  /* padding: 0 50px; */
+  padding: 0 50px;
   display: flex;
   width: 100%;
 }
@@ -327,4 +327,17 @@ table td {
       255,
       0.5) !important;
   /* White background with 70% opacity */
+}
+
+.suggestion-item {
+  display: flex;
+  align-items: center;
+}
+
+.suggestion-item .autocomplete-logo {
+  width: 45px;
+  /* Adjust the size as needed */
+  height: 45px;
+  object-fit: contain;
+  margin-right: 8px;
 }
