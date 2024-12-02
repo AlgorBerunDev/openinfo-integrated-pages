@@ -361,7 +361,7 @@
 
   const querySearch = debounce((queryString, cb) => {
     http
-      .get(`${url}/home/autofill/?name=${queryString}`)
+      .get(`/home/autofill/?name=${queryString}`)
       .then((response) => {
         suggestionsList.value = response.data
         cb(suggestionsList.value)
