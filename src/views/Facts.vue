@@ -169,6 +169,7 @@
   import { useRoute, useRouter } from 'vue-router'
   import options from '../components/options'
   import { useStore } from '@/stores/store'
+  import http from '@/http'
 
   const factLists = ref([])
 
@@ -198,8 +199,8 @@
   const store = useStore()
 
   const querySearch = (queryString, cb) => {
-    axios
-      .get(`${url}/home/autofill/?name=${queryString}`)
+    http
+      .get(`/home/autofill/?name=${queryString}`)
       .then((response) => {
         suggestionsList.value = response.data
 
