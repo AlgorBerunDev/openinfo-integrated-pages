@@ -4,10 +4,7 @@ export const reportsRoutes = [
     name: 'main-reports',
 
     components: {
-      default: () =>
-        import(
-          '../components/information disclosure/reports-all/Main-reports.vue'
-        ),
+      default: () => import('../components/containers/ReportContainer.vue'),
     },
   },
   {

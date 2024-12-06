@@ -3,7 +3,8 @@ export const factsRoutes = [
     path: '/facts',
     name: 'facts',
     components: {
-      default: () => import('../views/Facts.vue'),
+      default: () =>
+        import('../components/containers/EssentialFactsContainer.vue'),
     },
   },
   {
