@@ -13,7 +13,9 @@ import router from './router'
 
 const urlParams = new URLSearchParams(window.location.search)
 const locale = urlParams.get('locale') || 'ru'
-i18n.global.locale = locale
+
+i18n.global.locale.value = locale
+
 const app = createApp(App)
 
 app.use(createPinia())
