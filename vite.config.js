@@ -5,7 +5,7 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  base: '/openinfo/', // Добавляем базовый путь
+  base: '/', // Добавляем базовый путь
   build: {
     assetsDir: 'ef-assets', // Меняем директорию ассетов
     // Можно также настроить имена файлов
@@ -24,6 +24,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '/api/'),
+      },
+      '/uzseapi': {
+        target: 'https://uzse.uz',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/uzseapi/, ''), // Adjust path accordingly
       },
     },
   },

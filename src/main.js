@@ -11,6 +11,9 @@ import moment from 'moment'
 import App from './App.vue'
 import router from './router'
 
+const urlParams = new URLSearchParams(window.location.search)
+const locale = urlParams.get('locale') || 'ru'
+i18n.global.locale = locale
 const app = createApp(App)
 
 app.use(createPinia())
