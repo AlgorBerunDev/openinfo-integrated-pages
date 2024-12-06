@@ -2,23 +2,48 @@
   <div class="common-layout">
     <div class="search-bar">
       <el-select
-        v-model="value"
-        multiple
+        v-model="factSearchInput"
         filterable
-        remote
         reserve-keyword
-        placeholder="Please enter a keyword"
-        :remote-method="remoteMethod"
+        :placeholder="$t('message.placeholder_for_search')"
         :loading="loading"
-        style="width: 240px"
+        :filter-method="customFilter"
+        style="min-width: 300px"
+        size="large"
       >
         <el-option
-          v-for="item in organizationNames"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+          v-for="item in filteredOptions"
+          :key="item.isu_cd"
+          :label="item.isu_nm"
+          :value="item.isu_cd"
+        >
+          <template #default>
+            <p class="d-flex align-items-center">
+              {{ item.isu_nm }} &nbsp;
+              <el-tag size="small">{{ item.isu_srt_cd }}</el-tag>
+            </p>
+          </template>
+        </el-option>
       </el-select>
+
+      <el-button
+        :icon="Search"
+        color="#124483"
+        size="large"
+        style="margin: 0"
+        type="success"
+        @click="fetchData"
+      >
+        {{ $t('message.Search') }}
+      </el-button>
+      <el-button
+        color="red"
+        size="large"
+        style="margin: 0"
+        @click="clearFields"
+      >
+        {{ $t('message.Clear') }}</el-button
+      >
     </div>
     <el-container>
       <el-main v-loading="loading" class="fact-container">
@@ -127,7 +152,6 @@
         factLists.value = response.data.results
         total.value = response.data.meta.total_count
         pageSize.value = response.data.meta.per_page
-        console.log('Response:', response.data)
       })
       .catch((error) => {
         console.error('Error:', error)
@@ -150,31 +174,37 @@
 
   const getOrganizationNames = () => {
     axios
-      .get(`/uzseapi/isu_infos/names.json`, {
+      .get(`/uzseapi/isu_infos/names_json.json`, {
         params: {
           mkt_id: 'STK',
         },
       })
       .then((response) => {
-        organizationNames.value = response.data
+        organizationNames.value = response.data.data
+        console.log(organizationNames.value, 'sss')
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  const remoteMethod = (query) => {
-    if (query) {
-      loading.value = true
-      setTimeout(() => {
-        loading.value = false
-        organizationNames.value = list.value.filter((item) => {
-          return item.label.toLowerCase().includes(query.toLowerCase())
-        })
-      }, 200)
-    } else {
-      options.value = []
-    }
+  // Filtered options computed property
+  const filteredOptions = computed(() => {
+    if (!factSearchInput.value) return organizationNames.value
+
+    const query = factSearchInput.value.toLowerCase()
+    return organizationNames.value.filter((item) => {
+      return (
+        item.isu_nm.toLowerCase().includes(query) ||
+        item.isu_cd.toLowerCase().includes(query) ||
+        item.isu_srt_cd.toLowerCase().includes(query)
+      )
+    })
+  })
+
+  // Custom filter method (not strictly necessary anymore)
+  const customFilter = (query) => {
+    factSearchInput.value = query // Bind search input to filter query
   }
 
   onMounted(() => {
@@ -187,9 +217,6 @@
   .fact-container {
     min-height: 100vh;
     height: 100%;
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*gap: 10px;*/
   }
 
   .header-name {

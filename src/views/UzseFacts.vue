@@ -1,28 +1,43 @@
 <template>
-  <div class="search-bar">
+  <div class="search-bar uzse-facts">
     <el-select
       v-model="factNumber"
       size="large"
-      placeholder="Please enter a keyword"
-      popper-append-to-body="false"
+      class="uzse-facts"
+      :placeholder="$t('message.all')"
     >
       <el-option
-        v-for="item in organizationNames"
+        v-for="item in factNumbers"
         :key="item.id"
         :label="item.title"
         :value="item.id"
-      />
+      >
+      </el-option>
     </el-select>
-    <el-autocomplete
+    <el-select
       v-model="factSearchInput"
-      :fetch-suggestions="querySearch"
-      :trigger-on-focus="false"
-      class="inline-input w-75"
+      filterable
+      reserve-keyword
       :placeholder="$t('message.placeholder_for_search')"
+      :loading="loading"
+      :filter-method="customFilter"
+      style="min-width: 300px"
       size="large"
-      value-key="full_name_text"
-      clearable
-    />
+    >
+      <el-option
+        v-for="item in filteredOptions"
+        :key="item.isu_cd"
+        :label="item.isu_nm"
+        :value="item.isu_cd"
+      >
+        <template #default>
+          <p class="d-flex align-items-center">
+            {{ item.isu_nm }} &nbsp;
+            <el-tag size="small">{{ item.isu_srt_cd }}</el-tag>
+          </p>
+        </template>
+      </el-option>
+    </el-select>
 
     <el-button
       :icon="Search"
@@ -82,6 +97,7 @@
     <el-pagination
       :current-page="currentPage"
       :page-count="totalPages"
+      :page-size="pageSize"
       :total="total"
       background
       layout="prev, pager, next"
@@ -105,7 +121,7 @@
 
   const factLists = ref([])
   const organizationNames = ref([])
-
+  const factNumbers = ref([])
   const url = import.meta.env.VITE_APP_SERVER_URL
   const downloadUrl = import.meta.env.VITE_APP_DOWNLOAD_URL
 
@@ -120,7 +136,7 @@
 
   const results = ref([])
   const factNumber = ref(null)
-
+  const pageSize = ref(10)
   const factSearchInput = ref('')
   const suggestionsList = ref([])
 
@@ -151,13 +167,14 @@
       .get(`/uzseapi/reports/material_facts.json`, {
         params: {
           title_id: factNumber.value,
+          search_key: factSearchInput.value,
         },
       })
       .then((response) => {
         factLists.value = response.data.results
-        totalPages.value = response.data.total_pages
-        total.value = response.data.count
-        organizationNames.value = response.data.meta.titles
+        total.value = response.data.meta.total_count
+        pageSize.value = response.data.meta.per_page
+        factNumbers.value = response.data.meta.titles
       })
       .catch(({ response }) => {
         ElNotification({
@@ -170,24 +187,20 @@
       })
   }
 
-  const remoteMethod = (query) => {
-    if (query) {
-      loading.value = true
-      setTimeout(() => {
-        loading.value = false
-        organizationNames.value = list.value.filter((item) => {
-          return item.label.toLowerCase().includes(query.toLowerCase())
-        })
-      }, 200)
-    } else {
-      options.value = []
-    }
-  }
-
-  const clearFields = () => {
-    factSearchInput.value = ''
-    dateValue.value = []
-    selectValue.value = options[0].value
+  const getOrganizationNames = () => {
+    axios
+      .get(`/uzseapi/isu_infos/names_json.json`, {
+        params: {
+          mkt_id: 'STK',
+        },
+      })
+      .then((response) => {
+        organizationNames.value = response.data.data
+        console.log(organizationNames.value, 'sss')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   const currentPage = ref(1)
@@ -196,7 +209,33 @@
     getFacts()
   }
 
+  // Filtered options computed property
+  const filteredOptions = computed(() => {
+    if (!factSearchInput.value) return organizationNames.value
+
+    const query = factSearchInput.value.toLowerCase()
+    return organizationNames.value.filter((item) => {
+      return (
+        item.isu_nm.toLowerCase().includes(query) ||
+        item.isu_cd.toLowerCase().includes(query) ||
+        item.isu_srt_cd.toLowerCase().includes(query)
+      )
+    })
+  })
+
+  // Custom filter method (not strictly necessary anymore)
+  const customFilter = (query) => {
+    factSearchInput.value = query // Bind search input to filter query
+  }
+
+  const clearFields = () => {
+    currentPage.value = 1
+    factSearchInput.value = ''
+    factNumber.value = ''
+  }
+
   onMounted(() => {
+    getOrganizationNames()
     getFacts()
   })
 </script>
@@ -252,5 +291,11 @@
 
   .fact-date {
     font-size: 14px;
+  }
+</style>
+
+<style>
+  .el-select-dropdown {
+    max-width: 80vw;
   }
 </style>
