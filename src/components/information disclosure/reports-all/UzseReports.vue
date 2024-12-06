@@ -142,7 +142,7 @@
   const fetchData = () => {
     loading.value = true
     axios
-      .get(`/uzseapi/reports/financials.json`, {
+      .get(`/reports/financials.json`, {
         params: {
           page: currentPage.value,
           search_key: factSearchInput.value,
@@ -174,7 +174,7 @@
 
   const getOrganizationNames = () => {
     axios
-      .get(`/uzseapi/isu_infos/names_json.json`, {
+      .get(`/isu_infos/names_json.json`, {
         params: {
           mkt_id: 'STK',
         },

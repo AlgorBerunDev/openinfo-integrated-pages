@@ -15,7 +15,7 @@ const urlParams = new URLSearchParams(window.location.search)
 const locale = urlParams.get('locale') || 'ru'
 
 i18n.global.locale.value = locale
-console.log(locale, 'locale')
+
 const app = createApp(App)
 
 app.use(createPinia())

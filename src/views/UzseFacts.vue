@@ -150,7 +150,7 @@
   const getFacts = () => {
     loading.value = true
     axios
-      .get(`/uzseapi/reports/material_facts.json`, {
+      .get(`/reports/material_facts.json`, {
         params: {
           title_id: factNumber.value,
           search_key: factSearchInput.value,
@@ -175,7 +175,7 @@
 
   const getOrganizationNames = () => {
     axios
-      .get(`/uzseapi/isu_infos/names_json.json`, {
+      .get(`/isu_infos/names_json.json`, {
         params: {
           mkt_id: 'STK',
         },
