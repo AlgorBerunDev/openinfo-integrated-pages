@@ -23,7 +23,7 @@
 
   import Facts from '@/views/Facts.vue'
   import UzseFacts from '@/views/UzseFacts.vue'
-  const activeReport = ref('uzse')
+  const activeReport = ref('openinfo')
 
   const options = [
     {

@@ -67,7 +67,7 @@
                 target="_blank"
                 class="button-more"
                 color="#06AA17"
-                :href="`/${fact.report_url}`"
+                :href="`${fact.report_url}`"
               >
                 {{ $t('message.more') }}
               </a>

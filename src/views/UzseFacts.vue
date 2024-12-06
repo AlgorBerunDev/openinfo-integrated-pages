@@ -66,7 +66,7 @@
           {{ fact.issuer_name }}
         </h1>
         <div class="buttons d-flex gap-3 align-items-center">
-          <a target="_blank" :href="`/${fact.report_url}`" class="button-more">
+          <a target="_blank" :href="`${fact.report_url}`" class="button-more">
             {{ $t('message.more') }}
           </a>
         </div>
