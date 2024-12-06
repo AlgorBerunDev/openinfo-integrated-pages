@@ -22,7 +22,7 @@
   import { ref } from 'vue'
   import MainReports from '../information disclosure/reports-all/MainReports.vue'
   import UzseReports from '../information disclosure/reports-all/UzseReports.vue'
-  const activeReport = ref('uzse')
+  const activeReport = ref('openinfo')
 
   const options = [
     {
