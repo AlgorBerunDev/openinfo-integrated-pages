@@ -147,20 +147,6 @@
 
   const store = useStore()
 
-  const querySearch = (queryString, cb) => {
-    http
-      .get(`/home/autofill/?name=${queryString}`)
-      .then((response) => {
-        suggestionsList.value = response.data
-
-        // call callback function to return suggestions
-        cb(suggestionsList.value)
-      })
-      .catch((err) => {
-        console.log(err, 'error')
-      })
-  }
-
   const getFacts = () => {
     loading.value = true
     axios
@@ -196,7 +182,6 @@
       })
       .then((response) => {
         organizationNames.value = response.data.data
-        console.log(organizationNames.value, 'sss')
       })
       .catch((err) => {
         console.log(err)

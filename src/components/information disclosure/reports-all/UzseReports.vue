@@ -181,7 +181,6 @@
       })
       .then((response) => {
         organizationNames.value = response.data.data
-        console.log(organizationNames.value, 'sss')
       })
       .catch((err) => {
         console.log(err)
