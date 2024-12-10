@@ -50,6 +50,13 @@
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
     window.parent.postMessage(height, '*');  // В продакшене замените '*' на точный домен родительской страницы
+    console.log("load", height)
+  }
+
+  function sendHeight2() {
+    const height = document.documentElement.scrollHeight;
+    window.parent.postMessage(height, '*');  // В продакшене замените '*' на точный домен родительской страницы
+    console.log("resize", height)
   }
 
   // Отправляем высоту при загрузке
