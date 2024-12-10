@@ -49,23 +49,47 @@
 <script>
   function sendHeight() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage(height, '*');  // В продакшене замените '*' на точный домен родительской страницы
-    console.log("load", height)
+    // Добавляем небольшой буфер чтобы избежать округлений
+    const roundedHeight = Math.ceil(height) + 2;
+
+    // Проверяем, изменилась ли высота на самом деле
+    if (window._lastSentHeight !== roundedHeight) {
+      window._lastSentHeight = roundedHeight;
+      window.parent.postMessage(roundedHeight, '*');
+      console.log("load", roundedHeight);
+    }
   }
 
   function sendHeight2() {
     const height = document.documentElement.scrollHeight;
-    window.parent.postMessage(height, '*');  // В продакшене замените '*' на точный домен родительской страницы
-    console.log("resize", height)
+    const roundedHeight = Math.ceil(height) + 2;
+
+    if (window._lastSentHeight !== roundedHeight) {
+      window._lastSentHeight = roundedHeight;
+      window.parent.postMessage(roundedHeight, '*');
+      console.log("resize", roundedHeight);
+    }
   }
 
   // Отправляем высоту при загрузке
   window.addEventListener('load', sendHeight);
+
   // Отправляем высоту при изменении размера окна
-  window.addEventListener('resize', sendHeight);
-  // Если контент может меняться динамически, добавьте отправку высоты при изменениях
-  const observer = new MutationObserver(sendHeight);
-  observer.observe(document.body, { childList: true, subtree: true });
+  window.addEventListener('resize', sendHeight2);
+
+  // Используем debounce для MutationObserver
+  let timeout;
+  const observer = new MutationObserver(() => {
+    clearTimeout(timeout);
+    timeout = setTimeout(sendHeight, 100);
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    characterData: true
+  });
 </script>
 
 </html>
