@@ -47,49 +47,44 @@
 
 
 <script>
+  let lastSentHeight = 0;
+  const THRESHOLD = 50;
+
   function sendHeight() {
-    const height = document.documentElement.scrollHeight;
-    // Добавляем небольшой буфер чтобы избежать округлений
-    const roundedHeight = Math.ceil(height) + 2;
+    const height = Math.round(document.documentElement.scrollHeight);
 
-    // Проверяем, изменилась ли высота на самом деле
-    if (window._lastSentHeight !== roundedHeight) {
-      window._lastSentHeight = roundedHeight;
-      window.parent.postMessage(roundedHeight, '*');
-      console.log("load", roundedHeight);
+    // Отправляем только если изменение больше порога
+    if (Math.abs(height - lastSentHeight) > THRESHOLD) {
+      lastSentHeight = height;
+      window.parent.postMessage(height, '*');
+      console.log("resize", height);
     }
   }
 
-  function sendHeight2() {
-    const height = document.documentElement.scrollHeight;
-    const roundedHeight = Math.ceil(height) + 2;
+  // Используем один обработчик для всех случаев
+  const debouncedSendHeight = debounce(sendHeight, 200);
 
-    if (window._lastSentHeight !== roundedHeight) {
-      window._lastSentHeight = roundedHeight;
-      window.parent.postMessage(roundedHeight, '*');
-      console.log("resize", roundedHeight);
-    }
-  }
-
-  // Отправляем высоту при загрузке
   window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', debouncedSendHeight);
 
-  // Отправляем высоту при изменении размера окна
-  window.addEventListener('resize', sendHeight2);
-
-  // Используем debounce для MutationObserver
-  let timeout;
-  const observer = new MutationObserver(() => {
-    clearTimeout(timeout);
-    timeout = setTimeout(sendHeight, 100);
-  });
-
+  const observer = new MutationObserver(debouncedSendHeight);
   observer.observe(document.body, {
     childList: true,
-    subtree: true,
-    attributes: true,
-    characterData: true
+    subtree: true
   });
+
+  // Функция debounce
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
 </script>
 
 </html>
