@@ -56,7 +56,7 @@
     // Отправляем только если изменение больше порога
     if (Math.abs(height - lastSentHeight) > THRESHOLD) {
       lastSentHeight = height;
-      window.parent.postMessage(height, '*');
+      window.parent.postMessage(height + 50, '*');
       console.log("resize", height);
     }
   }
