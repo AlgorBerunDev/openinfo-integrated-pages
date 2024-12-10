@@ -14,7 +14,7 @@
       />
     </el-select>
     <MainReports v-if="activeReport === 'openinfo'" />
-    <UzseReports />
+    <UzseReports v-if="activeReport === 'uzse'" />
   </div>
 </template>
 
