@@ -9,7 +9,7 @@
       <el-option
         v-for="item in options"
         :key="item.value"
-        :label="item.label"
+        :label="$t(`message.${item.label}`)"
         :value="item.value"
       />
     </el-select>
@@ -27,11 +27,11 @@
   const options = [
     {
       value: 'openinfo',
-      label: 'Openinfo',
+      label: 'openinfo_title',
     },
     {
       value: 'uzse',
-      label: 'Uzse',
+      label: 'uzse_title',
     },
   ]
 </script>
