@@ -1150,7 +1150,7 @@
     "STK": "Stock",
     "BND": "Bond",
     "RPO": "Repo",
-    "openinfo_title": "Until 12/2024",
-    "uzse_title": "After 12/2024"
+    "openinfo_title": "After 12/2024",
+    "uzse_title": "Until 12/2024"
   }
 }
