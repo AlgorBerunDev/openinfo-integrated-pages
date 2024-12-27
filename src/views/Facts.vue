@@ -1,14 +1,24 @@
 <template>
   <div class="search-bar">
     <el-date-picker
-      v-model="dateValue"
-      :end-placeholder="$t('message.end_date')"
-      :range-separator="$t('message.to')"
-      :start-placeholder="$t('message.start_date')"
+      v-model="startDate"
+      :picker-options="pickerOptions"
+      :placeholder="$t('message.start_date')"
+      :shortcuts="shortcuts"
       format="DD.MM.YYYY"
       size="large"
-      style="width: 550px"
-      type="daterange"
+      style="min-width: 200px"
+      type="date"
+    />
+    <el-date-picker
+      v-model="endDate"
+      :picker-options="pickerOptions"
+      :placeholder="$t('message.end_date')"
+      :shortcuts="shortcuts"
+      format="DD.MM.YYYY"
+      size="large"
+      style="min-width: 200px"
+      type="date"
     />
     <el-select
       v-model="selectValue"
@@ -176,7 +186,8 @@
   const url = import.meta.env.VITE_APP_SERVER_URL
   const downloadUrl = import.meta.env.VITE_APP_DOWNLOAD_URL
 
-  const dateValue = ref(null)
+  const startDate = ref(null)
+  const endDate = ref(null)
   const route = useRoute()
   const router = useRouter()
   const selectValue = ref(options[0].value)
@@ -196,6 +207,34 @@
     getFacts()
   }
 
+  const pickerOptions = {
+    disabledDate(time) {
+      return time.getTime() > Date.now() // Disable future dates
+    },
+  }
+
+  const shortcuts = [
+    {
+      text: 'Today',
+      value: new Date(),
+    },
+    {
+      text: 'Yesterday',
+      value: () => {
+        const date = new Date()
+        date.setDate(date.getDate() - 1)
+        return date
+      },
+    },
+    {
+      text: 'Last Week',
+      value: () => {
+        const date = new Date()
+        date.setDate(date.getDate() - 7)
+        return date
+      },
+    },
+  ]
   const store = useStore()
 
   const querySearch = (queryString, cb) => {
@@ -216,9 +255,18 @@
     loading.value = true
     axios
       .get(
-        `${url}/disclosure/${selectValue?.value ? `${selectValue?.value}/` : 'facts/'}?page=${currentPage.value}${dateValue.value?.length ? `&pub_date__lte=${(dateValue.value?.[1]).toISOString()}&pub_date__gte=${moment(dateValue.value?.[0]).toISOString()}` : ''}&search=${factSearchInput.value}`,
+        `${url}/disclosure/${selectValue?.value ? `${selectValue?.value}/` : 'facts/'}`,
         {
-          method: 'get',
+          params: {
+            pub_date__lte: endDate.value
+              ? moment(endDate.value).format('YYYY-MM-DD hh:mm:ss')
+              : '',
+            pub_date__gte: startDate.value
+              ? moment(startDate.value).format('YYYY-MM-DD hh:mm:ss')
+              : '',
+            search: factSearchInput.value,
+            page: currentPage.value,
+          },
         },
       )
       .then((response) => {

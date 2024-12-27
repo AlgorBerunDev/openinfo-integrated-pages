@@ -963,8 +963,8 @@
 
     "financial_statements": "Финансовая отчетность ",
 
-    "quarterly": "Кварталный",
-    "annual": "Годовой",
+    "quarterly": "Квартальные",
+    "annual": "Годовые",
     "statement_type": "Вид отчетности ",
 
     "announcement_type": "Вид объявления",
@@ -1154,6 +1154,8 @@
     },
     "STK": "Акция",
     "BND": "Облигация",
-    "RPO": "Репо"
+    "RPO": "Репо",
+    "openinfo_title": "До 12/2024",
+    "uzse_title": "После 12/2024"
   }
 }

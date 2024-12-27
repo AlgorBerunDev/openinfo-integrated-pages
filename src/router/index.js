@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import PageNotFound from '../components/404/PageNotFound.vue'
 import MainLayout from '../views/MainLayout.vue'
 import { factsRoutes } from './factsRoutes'
-// import { announcementRoutes } from './announcementRoutes'
+import { announcementRoutes } from './announcementRoutes'
 // import { emissionRoutes } from './emissionsRoutes'
 import { reportsRoutes } from './reportsRoutes'
 
@@ -18,7 +18,7 @@ const router = createRouter({
           redirect: 'facts',
         },
         ...factsRoutes,
-        // ...announcementRoutes,
+        ...announcementRoutes,
         // ...emissionRoutes,
         ...reportsRoutes,
         {
