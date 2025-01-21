@@ -1,5 +1,14 @@
 export const announcementRoutes = [
   {
+    path: '/main-announce',
+    name: 'main-announce',
+    components: {
+      default: () =>
+        import('@/components/containers/AnnouncementContainer.vue'),
+    },
+  },
+
+  {
     path: '/announce/:id',
     name: 'announce-by-id',
 

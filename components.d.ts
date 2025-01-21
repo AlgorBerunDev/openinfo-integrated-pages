@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AnnouncementContainer: typeof import('./src/components/containers/AnnouncementContainer.vue')['default']
     Audition: typeof import('./src/components/information disclosure/AnnualReports/Audition.vue')['default']
     CharterOfJSC: typeof import('./src/components/information disclosure/announcements/CharterOfJSC.vue')['default']
     ComplyOrExplain: typeof import('./src/components/information disclosure/announcements/ComplyOrExplain.vue')['default']
@@ -70,6 +71,7 @@ declare module '@vue/runtime-core' {
     HoldingGms: typeof import('./src/components/information disclosure/announcements/HoldingGms.vue')['default']
     Investments: typeof import('./src/components/information disclosure/announcements/Investments.vue')['default']
     LimitedLiabilityCompanies: typeof import('./src/components/information disclosure/LimitedLiabilityCompanies.vue')['default']
+    MainAnnouncements: typeof import('./src/components/information disclosure/announcements/MainAnnouncements.vue')['default']
     MainReports: typeof import('./src/components/information disclosure/reports-all/MainReports.vue')['default']
     Msfo: typeof import('./src/components/information disclosure/AnnualReports/Msfo.vue')['default']
     Other: typeof import('./src/components/information disclosure/announcements/Other.vue')['default']
@@ -93,6 +95,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SelectMenu: typeof import('./src/components/SelectMenu.vue')['default']
     Tenders: typeof import('./src/components/information disclosure/announcements/Tenders.vue')['default']
+    UzseAnnouncements: typeof import('./src/components/information disclosure/announcements/UzseAnnouncements.vue')['default']
     UzseReports: typeof import('./src/components/information disclosure/reports-all/UzseReports.vue')['default']
     VacanciesOfJsc: typeof import('./src/components/information disclosure/announcements/VacanciesOfJsc.vue')['default']
     VacansiesJscDetail: typeof import('./src/components/information disclosure/announcements/VacansiesJscDetail.vue')['default']
